@@ -1,0 +1,35 @@
+<.page-wrapper>
+  <.centered>
+    <h1> Agda Search
+
+    <p> Text based search for the agda std lib.
+        Soon with types as well.
+
+    <form .search-form method=get action=@{HomeR}>
+        $if not (null failures)
+        <ul .failures>
+          $forall failure <- failures
+            <li>^{failure}
+        ^{searchWidget}
+        <input type=submit value=Search>
+
+  $if not (null identifiers)
+    <table .results>
+      <tr>
+        <th>results
+      $forall (identifier, mref) <- identifiers
+        <tr>
+          <td> 
+            $maybe ref <- mref
+              <a href=@{FileR (modname ref) (byteoffset identifier) }>
+                ^{name identifier} 
+              : ^{typestr identifier}
+            $nothing
+              <a href="#">
+                ^{name identifier} 
+              : ^{typestr identifier}
+  <footer>
+    Special thanks to <a href="https://amelia.how/">Amelia</a> for doing all the heavy lifiting. Sources can be found 
+    <a href="https://github.com/plt-amy/agda-search">here</a>.
+    
+  

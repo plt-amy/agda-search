@@ -1,2 +1,3 @@
 dist-newstyle
 *.db
+client_session_key.aes

@@ -1,0 +1,23 @@
+body{
+    text-align: center;
+}
+.page-wrapper{
+    text-align: left;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column
+}
+.centered{
+    max-width: 40em;
+    margin: 0 auto;
+}
+
+.page-wrapper footer{
+   margin-top: auto;
+   font-size: small;
+   border-top: solid 2px #f0efef;
+}
+
+.search-form > div {
+    display: inline-block;
+}

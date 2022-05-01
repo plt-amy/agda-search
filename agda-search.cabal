@@ -10,6 +10,9 @@ library
   exposed-modules:    AgdaSearch.Schema
                     , AgdaSearch.Populate
                     , AgdaSearch.Cli
+                    , AgdaSearch.Server
+                    , AgdaSearch.Query
+                    , AgdaSearch.Uri
   ghc-options: -Wall -Wcompat -Wincomplete-uni-patterns -Wredundant-constraints -Wincomplete-record-updates -Widentities -Wcpp-undef -fwarn-tabs -Wpartial-fields -fdefer-diagnostics
   default-language: Haskell2010
   build-depends:    base            ^>=4.14.3.0
@@ -22,6 +25,15 @@ library
                     , syb
                     , deepseq
                     , sqlite-simple
+                    , optparse-applicative
+                    , yesod
+                    , yesod-core
+                    , resource-pool
+                    , data-default
+                    , template-haskell
+                    , shakespeare
+                    , yesod-form
+                    , mtl
   hs-source-dirs:   src
 
 executable agda-search

@@ -18,33 +18,16 @@ import Agda.Syntax.Scope.Base
 import Agda.Syntax.Translation.AbstractToConcrete (abstractToConcrete_)
 import Agda.Syntax.Translation.InternalToAbstract (Reify (reify))
 import Agda.TypeChecking.Monad
-import Agda.TypeChecking.Pretty (PrettyTCM (prettyTCM))
-import Agda.TypeChecking.Serialise (decodeFile)
-import Agda.Utils.CallStack (SrcLoc (srcLocEndCol))
 import Agda.Utils.FileName
 import Agda.Utils.Maybe
 import qualified Agda.Utils.Maybe.Strict as S
 import Agda.Utils.Pretty
-import Control.Concurrent
-import Control.DeepSeq
-import Control.Exception
-import Control.Monad
 import Control.Monad.IO.Class
-import Data.Char (toLower)
-import Data.Foldable
 import Data.Generics
 import Data.Int
 import Data.List.NonEmpty (NonEmpty ((:|)))
-import Data.Map.Strict (Map)
-import qualified Data.Map.Strict as Map
-import qualified Data.Set as Set
 import Data.Text (Text)
 import qualified Data.Text as Text
-import Data.Text.AhoCorasick.Automaton (AcMachine)
-import qualified Data.Text.AhoCorasick.Automaton as Aho
-import Data.Traversable
-import qualified Data.Vector as V
-import Data.Vector.Mutable (IOVector)
 import Database.SQLite.Simple
 
 setupTCM :: FilePath -> TCMT IO String
@@ -164,8 +147,9 @@ friendlyQName :: MonadIO m => QName -> TCMT m Text
 friendlyQName = pure . Text.pack . render . pretty
 
 runAgda ::
-  FilePath -> -- ^ the base directory of relative paths
-  TCMT IO a -> IO a
+  FilePath -- ^ the base directory of relative paths
+  -> TCMT IO a
+  -> IO a
 runAgda basep k = do
   e <- runTCMTop $ do
     _ <- setupTCM basep

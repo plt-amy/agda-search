@@ -31,7 +31,7 @@ data ModRef = ModRef
   { modid :: Int,
     modname :: Text,
     filepath :: FilePath
-  }
+  } deriving Show
 
 data Identifier = Identifier
   { identid :: Int,
@@ -44,3 +44,6 @@ data Identifier = Identifier
 
 instance FromRow Identifier where
   fromRow = Identifier <$> field <*> field <*> field <*> field <*> field
+
+instance FromRow ModRef where
+  fromRow = ModRef <$> field <*> field <*> field
